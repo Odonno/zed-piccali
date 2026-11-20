@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "skills": {
+    "zed-extension-creator": {
+      "source": "kjanat/skills",
+      "commit": "37d81569639ab5dbb66cb8dbd6be1431db24d779",
+      "sourceType": "github",
+      "skillPath": "skills/zed-extension-creator/SKILL.md",
+      "computedHash": "f59b113af8a64f86471f6530c61e925ca8da08411c883e94d147ba4be6f5b881"
+    }
+  }
+}
