@@ -30,16 +30,16 @@
   [
     (when_step
       (when_line
-        (when_kw) @variable.parameter))
+        (when_kw) @function))
     (asterisk_step
       (asterisk_line
-        "* " @variable.parameter))
+        "* " @function))
     (and_step
       (and_line
-        (and_kw) @variable.parameter))
+        (and_kw) @function))
     (but_step
       (but_line
-        (but_kw) @variable.parameter))
+        (but_kw) @function))
   ])
 
 (then_group
