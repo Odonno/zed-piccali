@@ -3,11 +3,10 @@
 //! Launches the piccali-cli language server (`piccali-cli lsp`, stdio).
 //! Binary acquisition order:
 //!   1. user override via `"lsp": { "piccali": { "binary": { "path": ... } } }`
-//!   2. an existing install on PATH (`piccali-cli` or `piccali`; mise shims
-//!      resolve through the worktree's shell environment)
+//!   2. an existing install on PATH (`piccali-cli` or `piccali`; mise shims resolve through the worktree's shell environment)
 //!   3. latest GitHub release, downloaded into a per-version cache dir
 
-use zed_extension_api::{self as zed, settings::LspSettings, LanguageServerId, Result};
+use zed_extension_api::{self as zed, LanguageServerId, Result, settings::LspSettings};
 
 const BINARY_NAME: &str = "piccali-cli";
 const GITHUB_REPO: &str = "Odonno/piccali-cli";
@@ -65,12 +64,16 @@ impl PiccaliExtension {
             zed::Architecture::Aarch64 => "aarch64",
             zed::Architecture::X8664 => "x86_64",
             zed::Architecture::X86 => {
-                return Err("piccali-cli does not publish x86 release assets".into())
+                return Err("piccali-cli does not publish x86 release assets".into());
             }
         };
         let (os_str, file_type, archive_ext) = match os {
             zed::Os::Mac => ("apple-darwin", zed::DownloadedFileType::GzipTar, "tar.gz"),
-            zed::Os::Linux => ("unknown-linux-musl", zed::DownloadedFileType::GzipTar, "tar.gz"),
+            zed::Os::Linux => (
+                "unknown-linux-musl",
+                zed::DownloadedFileType::GzipTar,
+                "tar.gz",
+            ),
             zed::Os::Windows => ("pc-windows-msvc", zed::DownloadedFileType::Zip, "zip"),
         };
 
